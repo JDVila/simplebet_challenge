@@ -377,7 +377,7 @@ class _GameBoxScoresPageState extends State<GameBoxScoresPage> {
       _createPitcherStatsTableRow('PITCHERS', 'IP', 'H', 'R', 'K', -1),
     );
 
-    double totalAwayPitchersInningsPitched = 0;
+    double totalAwayPitchersInningsPitched = 0.0;
     int totalAwayPitchersHits = 0;
     int totalAwayPitchersRuns = 0;
     int totalAwayPitchersStrikeOuts = 0;
@@ -418,7 +418,7 @@ class _GameBoxScoresPageState extends State<GameBoxScoresPage> {
           totalAwayPitchersInningsPitched =
               (null != groups[m]['stat']['inningsPitched'])
                   ? totalAwayPitchersInningsPitched +=
-                      double.parse(groups[m]['stat']['inningsPitched'])
+              double.parse(double.parse(groups[m]['stat']['inningsPitched']).toStringAsFixed(2))
                   : totalAwayPitchersInningsPitched;
           totalAwayPitchersHits = (null != groups[m]['stat']['hits'])
               ? totalAwayPitchersHits += groups[m]['stat']['hits']
