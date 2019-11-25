@@ -618,7 +618,7 @@ class _GameBoxScoresPageState extends State<GameBoxScoresPage> {
           totalHomePitchersInningsPitched =
               (null != groups[m]['stat']['inningsPitched'])
                   ? totalHomePitchersInningsPitched +=
-                      double.parse(groups[m]['stat']['inningsPitched'])
+                  double.parse(double.parse(groups[m]['stat']['inningsPitched']).toStringAsFixed(2))
                   : totalHomePitchersInningsPitched;
           totalHomePitchersHits = (null != groups[m]['stat']['hits'])
               ? totalHomePitchersHits += groups[m]['stat']['hits']
