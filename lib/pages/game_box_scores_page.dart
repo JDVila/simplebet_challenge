@@ -394,10 +394,10 @@ class _GameBoxScoresPageState extends State<GameBoxScoresPage> {
       String fullName = '${playerFirstName.substring(0, 1)}. $playerLastName';
       List groups = JsonDecoder()
           .convert(individualPlayerStatsResponse.body)['stats'][0]['splits'];
-      String awayPitchersInningsPitched = '---';
-      String awayPitchersHits = '---';
-      String awayPitchersRuns = '---';
-      String awayPitchersStrikeOuts = '---';
+      String awayPitchersInningsPitched,
+          awayPitchersHits,
+          awayPitchersRuns,
+          awayPitchersStrikeOuts = '---';
 
       for (int m = 0; m < groups.length; m++) {
         if (groups[m]['group'] == 'pitching') {
@@ -417,8 +417,9 @@ class _GameBoxScoresPageState extends State<GameBoxScoresPage> {
 
           totalAwayPitchersInningsPitched =
               (null != groups[m]['stat']['inningsPitched'])
-                  ? totalAwayPitchersInningsPitched +=
-              double.parse(double.parse(groups[m]['stat']['inningsPitched']).toStringAsFixed(2))
+                  ? totalAwayPitchersInningsPitched += double.parse(
+                      double.parse(groups[m]['stat']['inningsPitched'])
+                          .toStringAsFixed(2))
                   : totalAwayPitchersInningsPitched;
           totalAwayPitchersHits = (null != groups[m]['stat']['hits'])
               ? totalAwayPitchersHits += groups[m]['stat']['hits']
@@ -442,7 +443,7 @@ class _GameBoxScoresPageState extends State<GameBoxScoresPage> {
     awayPitchersTableRows.add(
       _createPitcherStatsTableRow(
           'TEAM',
-          '$totalAwayPitchersInningsPitched',
+          '${double.parse(totalAwayPitchersInningsPitched.toStringAsFixed(2))}',
           '$totalAwayPitchersHits',
           '$totalAwayPitchersRuns',
           '$totalAwayPitchersStrikeOuts',
@@ -617,8 +618,9 @@ class _GameBoxScoresPageState extends State<GameBoxScoresPage> {
 
           totalHomePitchersInningsPitched =
               (null != groups[m]['stat']['inningsPitched'])
-                  ? totalHomePitchersInningsPitched +=
-                  double.parse(double.parse(groups[m]['stat']['inningsPitched']).toStringAsFixed(2))
+                  ? totalHomePitchersInningsPitched += double.parse(
+                      double.parse(groups[m]['stat']['inningsPitched'])
+                          .toStringAsFixed(2))
                   : totalHomePitchersInningsPitched;
           totalHomePitchersHits = (null != groups[m]['stat']['hits'])
               ? totalHomePitchersHits += groups[m]['stat']['hits']
